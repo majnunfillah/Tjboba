@@ -1,0 +1,38 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch MCP Claude Context Server",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceFolder}/.vscode/claude-context-server.js",
+            "env": {
+                "PROJECT_ROOT": "${workspaceFolder}",
+                "ANTHROPIC_API_KEY": "${env:ANTHROPIC_API_KEY}",
+                "MCP_LOG_LEVEL": "info"
+            },
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen"
+        },
+        {
+            "name": "Debug PHP Laravel",
+            "type": "php",
+            "request": "launch",
+            "program": "${workspaceFolder}/artisan",
+            "args": ["serve", "--host=localhost", "--port=8000"],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "APP_ENV": "local",
+                "APP_DEBUG": "true"
+            }
+        },
+        {
+            "name": "Run Laravel Tests",
+            "type": "php",
+            "request": "launch",
+            "program": "${workspaceFolder}/vendor/bin/phpunit",
+            "args": ["--testdox"],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}

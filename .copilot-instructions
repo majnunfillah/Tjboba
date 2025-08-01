@@ -1,0 +1,136 @@
+# COPILOT INSTRUCTIONS FOR BOBAJETBRAIN PROJECT
+
+You are an AI assistant helping with a Laravel-based SPK (Surat Perintah Kerja) management system called BobaJetBrain.
+
+## PROJECT OVERVIEW
+- **Framework**: Laravel 9.x with PHP 8.1+
+- **Database**: SQL Server
+- **Frontend**: Bootstrap + DataTables + jQuery
+- **Architecture**: MVC + Repository Pattern
+- **Language**: Indonesian comments and documentation
+
+## CORE PRINCIPLES
+1. **Follow Laravel Conventions**: Use Eloquent, Repository pattern, Service classes
+2. **PSR-12 Compliance**: Follow PHP coding standards
+3. **Type Safety**: Always add type hints and return types
+4. **Error Handling**: Use try-catch blocks and proper logging
+5. **SQL Server Compatibility**: Use COALESCE() instead of ISNULL()
+
+## KEY PATTERNS
+
+### Controller Structure
+```php
+<?php
+declare(strict_types=1);
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
+use Exception;
+
+class ExampleController extends Controller
+{
+    public function __construct(
+        private ExampleRepository $repository
+    ) {}
+
+    public function getData(Request $request): JsonResponse
+    {
+        try {
+            $data = $this->repository->getData($request->all());
+            return response()->json(['success' => true, 'data' => $data]);
+        } catch (Exception $e) {
+            Log::error('Error in getData: ' . $e->getMessage());
+            return response()->json(['success' => false, 'message' => 'Terjadi kesalahan'], 500);
+        }
+    }
+}
+```
+
+### Repository Structure
+```php
+<?php
+declare(strict_types=1);
+
+namespace App\Http\Repository;
+
+use Illuminate\Support\Facades\DB;
+
+class ExampleRepository
+{
+    public function getData(array $params = []): array
+    {
+        $query = DB::table('table_name')
+            ->select(['column1', 'column2', 'column3'])
+            ->where('active', '=', 1);
+
+        // Apply filters
+        if (!empty($params['search'])) {
+            $query->where('name', 'LIKE', '%' . $params['search'] . '%');
+        }
+
+        return $query->get()->toArray();
+    }
+}
+```
+
+### DataTables Response
+```php
+public function requestAjax(Request $request): JsonResponse
+{
+    $data = $this->repository->getData($request->all());
+    
+    return response()->json([
+        'draw' => (int) $request->get('draw'),
+        'recordsTotal' => count($data),
+        'recordsFiltered' => count($data),
+        'data' => $data
+    ]);
+}
+```
+
+## MODULE SPECIFICATIONS
+
+### SPK Module
+- **Controller**: `SPKController` - handles CRUD operations for work orders
+- **Repository**: `SPKRepository` - data access layer for SPK operations
+- **Key Methods**: 
+  - `getOutstandingSO()` - returns outstanding sales orders
+  - `getStock()` - returns stock/inventory data
+  - `getData()` - main data retrieval for DataTables
+
+### Database Tables
+- `tbso`, `tbsod` - Sales Order tables
+- `tbstok` - Stock/Inventory table
+- `tbbrg` - Items/Products table
+
+## CODING STANDARDS
+
+### Comments
+- Use Indonesian for comments and documentation
+- Add PHPDoc blocks for methods
+- Explain complex business logic
+- Include usage examples when helpful
+
+### Database Queries
+- Use Eloquent when possible
+- Use DB::raw() for complex SQL
+- Always use COALESCE() for null handling (SQL Server compatibility)
+- Implement proper pagination for large datasets
+
+### Error Messages
+- User-friendly messages in Indonesian
+- Technical details in logs only
+- Proper HTTP status codes
+- Consistent error response format
+
+## SECURITY CHECKLIST
+- Validate all inputs
+- Sanitize outputs
+- Use CSRF protection
+- Implement proper authentication
+- Log security-related events
+
+Remember: Prioritize readable, maintainable code over clever optimizations. Always consider the Indonesian development team who will maintain this code.

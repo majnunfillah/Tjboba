@@ -1,0 +1,119 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Start MCP Claude Server",
+            "type": "shell",
+            "command": "node",
+            "args": ["${workspaceFolder}/.vscode/claude-context-server.js"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new"
+            },
+            "isBackground": true,
+            "problemMatcher": [],
+            "options": {
+                "env": {
+                    "PROJECT_ROOT": "${workspaceFolder}",
+                    "ANTHROPIC_API_KEY": "${env:ANTHROPIC_API_KEY}"
+                }
+            }
+        },
+        {
+            "label": "Install MCP Dependencies",
+            "type": "shell",
+            "command": "npm",
+            "args": ["install"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}/.vscode"
+            }
+        },
+        {
+            "label": "Laravel Serve",
+            "type": "shell", 
+            "command": "php",
+            "args": ["artisan", "serve", "--host=localhost", "--port=8000"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new"
+            },
+            "isBackground": true,
+            "problemMatcher": [],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "Laravel Migration",
+            "type": "shell",
+            "command": "php",
+            "args": ["artisan", "migrate"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "Laravel Clear Cache",
+            "type": "shell",
+            "command": "php",
+            "args": ["artisan", "cache:clear"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "Optimize Copilot Context",
+            "type": "shell",
+            "command": "echo",
+            "args": ["Reloading GitHub Copilot context with Claude optimization..."],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": false,
+                "panel": "shared"
+            },
+            "dependsOn": ["Start MCP Claude Server"]
+        },
+        {
+            "label": "Full Development Setup",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "Install MCP Dependencies",
+                "Start MCP Claude Server", 
+                "Laravel Serve"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}

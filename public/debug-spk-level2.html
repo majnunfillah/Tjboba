@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SPK Level 2 Debug Test</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .debug-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; background: #f9f9f9; }
+        .debug-title { font-weight: bold; margin-bottom: 10px; color: #333; }
+        pre { background: #fff; padding: 10px; border: 1px solid #ccc; overflow-x: auto; }
+        .btn { padding: 8px 16px; margin: 5px; background: #007bff; color: white; border: none; cursor: pointer; }
+        .btn:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>SPK Level 2 Debug Test</h1>
+    
+    <div class="debug-section">
+        <div class="debug-title">1. Test Data Availability</div>
+        <button class="btn" onclick="testDebugLevel2()">Test Level 2 Data</button>
+        <button class="btn" onclick="testSpkDetail()">Test SPK Detail Response</button>
+        <div id="debug-results"></div>
+    </div>
+
+    <div class="debug-section">
+        <div class="debug-title">2. Test CSS Loading</div>
+        <button class="btn" onclick="testCSSLoading()">Test CSS Classes</button>
+        <div id="css-results"></div>
+        
+        <!-- Test elements with our CSS classes -->
+        <div style="margin-top: 10px;">
+            <div class="level-1-row" style="padding: 10px; margin: 5px;">Level 1 Row Test</div>
+            <div class="level-2-row" style="padding: 10px; margin: 5px;"><td>Level 2 Row Test</td></div>
+        </div>
+    </div>
+
+    <div class="debug-section">
+        <div class="debug-title">3. Test Network Calls</div>
+        <button class="btn" onclick="testNetworkCalls()">Test AJAX Calls</button>
+        <div id="network-results"></div>
+    </div>
+
+    <script src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
+    <script>
+        // Setup CSRF token
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        function testDebugLevel2() {
+            $('#debug-results').html('<p>Loading...</p>');
+            
+            $.get('/produksi/transaksi-spk/debug-level2', {
+                NoBukti: '00031/SPK/PWT/022022',
+                Urut: 1
+            })
+            .done(function(response) {
+                $('#debug-results').html('<pre>' + JSON.stringify(response, null, 2) + '</pre>');
+            })
+            .fail(function(xhr) {
+                $('#debug-results').html('<p style="color: red;">Error: ' + xhr.status + ' - ' + xhr.statusText + '</p><pre>' + xhr.responseText + '</pre>');
+            });
+        }
+
+        function testSpkDetail() {
+            $('#debug-results').html('<p>Loading SPK Detail...</p>');
+            
+            $.post('/produksi/transaksi-spk/detail', {
+                NoBukti: '00031/SPK/PWT/022022'
+            })
+            .done(function(response) {
+                $('#debug-results').html('<h4>SPK Detail Response:</h4><pre>' + JSON.stringify(response, null, 2) + '</pre>');
+            })
+            .fail(function(xhr) {
+                $('#debug-results').html('<p style="color: red;">Error: ' + xhr.status + ' - ' + xhr.statusText + '</p><pre>' + xhr.responseText + '</pre>');
+            });
+        }
+
+        function testCSSLoading() {
+            const level1Element = $('.level-1-row');
+            const level2Element = $('.level-2-row');
+            
+            let results = '<h4>CSS Test Results:</h4>';
+            results += '<p><strong>Level 1 Row:</strong></p>';
+            results += '<p>Font Weight: ' + level1Element.css('font-weight') + '</p>';
+            results += '<p>Background Color: ' + level1Element.css('background-color') + '</p>';
+            
+            results += '<p><strong>Level 2 Row:</strong></p>';
+            results += '<p>Font Style: ' + level2Element.css('font-style') + '</p>';
+            results += '<p>Background Color: ' + level2Element.css('background-color') + '</p>';
+            results += '<p>Border Left: ' + level2Element.css('border-left') + '</p>';
+            
+            results += '<p><strong>CSS File Status:</strong></p>';
+            results += '<p>SPK CSS loaded: ' + ($('link[href*="spk.css"]').length > 0 ? 'YES' : 'NO') + '</p>';
+            
+            $('#css-results').html(results);
+        }
+
+        function testNetworkCalls() {
+            $('#network-results').html('<p>Testing network calls...</p>');
+            
+            // Test if SPK index endpoint is accessible
+            $.get('/produksi/transaksi-spk/')
+            .done(function() {
+                $('#network-results').append('<p style="color: green;">✓ SPK Index endpoint accessible</p>');
+            })
+            .fail(function(xhr) {
+                $('#network-results').append('<p style="color: red;">✗ SPK Index endpoint failed: ' + xhr.status + '</p>');
+            });
+            
+            // Test if CSS file is accessible
+            $.get('/assets/css/spk.css')
+            .done(function() {
+                $('#network-results').append('<p style="color: green;">✓ SPK CSS file accessible</p>');
+            })
+            .fail(function(xhr) {
+                $('#network-results').append('<p style="color: red;">✗ SPK CSS file failed: ' + xhr.status + '</p>');
+            });
+        }
+
+        // Auto-run CSS test when page loads
+        $(document).ready(function() {
+            testCSSLoading();
+        });
+    </script>
+</body>
+</html>

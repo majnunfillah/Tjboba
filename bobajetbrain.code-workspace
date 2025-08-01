@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "D:/me.pmk.my.id"
+		}
+	],
+	"settings": {
+		"powershell.cwd": "bobajetbrain"
+	}
+}

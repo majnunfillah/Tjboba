@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug SPK Checkbox</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .debug-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; background: #f9f9f9; }
+        .highlight { background: yellow; }
+        code { background: #f0f0f0; padding: 2px 5px; }
+    </style>
+</head>
+<body>
+    <h1>Debug SPK Checkbox Issues</h1>
+    
+    <div class="debug-section">
+        <h3>Step 1: Find SPK Table</h3>
+        <p>Buka halaman SPK di browser lain dan:</p>
+        <ol>
+            <li>Tekan F12 untuk buka Developer Tools</li>
+            <li>Pergi ke tab "Elements"</li>
+            <li>Tekan Ctrl+F untuk search</li>
+            <li>Cari: <code>datatableMain</code> atau <code>IsOtorisasi1</code></li>
+            <li>Copy semua HTML table yang ditemukan dan paste di bawah</li>
+        </ol>
+    </div>
+    
+    <div class="debug-section">
+        <h3>Step 2: Check JavaScript Console</h3>
+        <p>Di tab "Console" di Developer Tools, cari error messages:</p>
+        <ul>
+            <li>Error loading spk.js?</li>
+            <li>DataTables errors?</li>
+            <li>jQuery errors?</li>
+            <li>AJAX request errors?</li>
+        </ul>
+    </div>
+    
+    <div class="debug-section">
+        <h3>Step 3: Check Network Tab</h3>
+        <p>Di tab "Network":</p>
+        <ol>
+            <li>Refresh halaman SPK</li>
+            <li>Cari request ke <code>/produksi/transaksi-spk</code></li>
+            <li>Klik request tersebut</li>
+            <li>Check "Response" tab</li>
+            <li>Cari <code>IsOtorisasi1Html</code> di response</li>
+            <li>Copy response JSON dan paste di bawah</li>
+        </ol>
+    </div>
+    
+    <div class="debug-section">
+        <h3>Step 4: Manual Test</h3>
+        <p>Paste HTML table SPK Anda di sini dan saya akan analisis:</p>
+        <textarea id="htmlInput" rows="10" cols="100" placeholder="Paste HTML table SPK di sini..."></textarea>
+        <br><br>
+        <button onclick="analyzeHTML()">Analyze HTML</button>
+        <div id="analysis"></div>
+    </div>
+    
+    <div class="debug-section">
+        <h3>Step 5: Compare with Working Memorial</h3>
+        <p>Buka halaman Memorial yang berfungsi, lalu:</p>
+        <ol>
+            <li>Inspect checkbox Memorial yang bisa diklik</li>
+            <li>Copy HTML dan JavaScript event listeners</li>
+            <li>Compare dengan SPK</li>
+        </ol>
+    </div>
+    
+    <script>
+        function analyzeHTML() {
+            const html = document.getElementById('htmlInput').value;
+            const analysis = document.getElementById('analysis');
+            
+            let result = '<h4>Analysis Results:</h4>';
+            
+            // Check for checkbox elements
+            const checkboxMatches = html.match(/<input[^>]*type=["\']checkbox["\'][^>]*name=["\']IsOtorisasi1["\'][^>]*>/g);
+            if (checkboxMatches) {
+                result += '<p class="highlight">✓ Found IsOtorisasi1 checkboxes: ' + checkboxMatches.length + '</p>';
+                checkboxMatches.forEach((match, index) => {
+                    result += '<p><strong>Checkbox ' + (index + 1) + ':</strong><br><code>' + match + '</code></p>';
+                });
+            } else {
+                result += '<p style="color: red;">✗ No IsOtorisasi1 checkboxes found!</p>';
+            }
+            
+            // Check for icons instead of checkboxes
+            const iconMatches = html.match(/<i[^>]*class=["\'][^"\']*fa-square[^"\']*["\'][^>]*>/g);
+            if (iconMatches) {
+                result += '<p style="color: orange;">⚠ Found disabled icons: ' + iconMatches.length + '</p>';
+                iconMatches.forEach((match, index) => {
+                    result += '<p><strong>Icon ' + (index + 1) + ':</strong><br><code>' + match + '</code></p>';
+                });
+            }
+            
+            // Check for DataTable structure
+            if (html.includes('datatableMain')) {
+                result += '<p class="highlight">✓ Found datatableMain structure</p>';
+            } else {
+                result += '<p style="color: red;">✗ No datatableMain found</p>';
+            }
+            
+            // Check for proper div structure
+            if (html.includes('text-center')) {
+                result += '<p class="highlight">✓ Found text-center divs</p>';
+            }
+            
+            analysis.innerHTML = result;
+        }
+        
+        // Auto-populate with sample working checkbox for comparison
+        document.addEventListener('DOMContentLoaded', function() {
+            const sample = `
+Sample working checkbox HTML:
+<div class="text-center">
+    <input type="checkbox" name="IsOtorisasi1" title="Otorisasi" style="accent-color:#28a745!important;cursor:pointer">
+</div>
+
+Sample disabled icon HTML:
+<div class="text-center">
+    <i class="far fa-square text-success" title="Otorisasi 1 Belum dilakukan"></i>
+</div>
+            `;
+            document.getElementById('htmlInput').placeholder = sample;
+        });
+    </script>
+    
+    <div class="debug-section">
+        <h3>Quick Fix Attempts</h3>
+        <p>Jika masih tidak bisa, coba:</p>
+        <ol>
+            <li><strong>Clear semua cache:</strong> Ctrl+Shift+Delete → Clear all</li>
+            <li><strong>Disable browser extensions:</strong> Buka Incognito/Private mode</li>
+            <li><strong>Try different browser:</strong> Chrome → Firefox atau sebaliknya</li>
+            <li><strong>Check user login:</strong> Pastikan login sebagai 'adminkarir'</li>
+            <li><strong>Restart web server:</strong> Stop dan start ulang server</li>
+        </ol>
+    </div>
+    
+    <div class="debug-section">
+        <h3>Expected Working HTML</h3>
+        <p>Checkbox yang benar seharusnya seperti ini:</p>
+        <div style="border: 1px solid #ccc; padding: 10px; background: white;">
+            <div class="text-center">
+                <input type="checkbox" name="IsOtorisasi1" title="Otorisasi" style="accent-color:#28a745!important;cursor:pointer">
+                <label>Clickable Test</label>
+            </div>
+        </div>
+        <p>Try clicking the checkbox above ↑ - it should work.</p>
+    </div>
+</body>
+</html>

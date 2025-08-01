@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SPK Checkbox Test</title>
+    <style>
+        .checkbox-test {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+        .checkbox-test input[type="checkbox"] {
+            accent-color: #28a745 !important;
+            cursor: pointer;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>SPK Authorization Checkbox Test</h1>
+    
+    <div class="checkbox-test">
+        <h3>Test 1: Basic Checkbox</h3>
+        <div class="text-center">
+            <input type="checkbox" name="IsOtorisasi1" title="Otorisasi" style="accent-color:#28a745!important;cursor:pointer">
+            <label>Basic clickable checkbox</label>
+        </div>
+    </div>
+    
+    <div class="checkbox-test">
+        <h3>Test 2: Checkbox with Event Handler</h3>
+        <div class="text-center">
+            <input type="checkbox" name="IsOtorisasi1" title="Otorisasi" style="accent-color:#28a745!important;cursor:pointer" id="test-checkbox">
+            <label for="test-checkbox">Checkbox with JavaScript handler</label>
+        </div>
+        <div id="status"></div>
+    </div>
+    
+    <div class="checkbox-test">
+        <h3>Test 3: Table with DataTables-like Structure</h3>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>No Bukti</th>
+                    <th>Authorized 1</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>TEST001</td>
+                    <td>
+                        <div class="text-center">
+                            <input type="checkbox" name="IsOtorisasi1" title="Otorisasi" style="accent-color:#28a745!important;cursor:pointer">
+                        </div>
+                    </td>
+                    <td>Unchecked</td>
+                </tr>
+                <tr>
+                    <td>TEST002</td>
+                    <td>
+                        <div class="text-center">
+                            <input type="checkbox" name="IsOtorisasi1" title="Sudah Ter Otorisasi" style="accent-color:#28a745!important;cursor:pointer" checked>
+                        </div>
+                    </td>
+                    <td>Checked</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <script>
+        $(document).ready(function() {
+            // Test basic checkbox functionality
+            $('#test-checkbox').on('change', function() {
+                $('#status').html('Checkbox ' + (this.checked ? 'checked' : 'unchecked') + ' at ' + new Date().toLocaleTimeString());
+            });
+            
+            // Test event delegation like in SPK module
+            $(document).on('change', 'input[name="IsOtorisasi1"]', function(e) {
+                console.log('IsOtorisasi1 checkbox clicked:', this.checked);
+                
+                // Show confirmation like in actual SPK
+                if (confirm('Apakah anda yakin akan mengubah status otorisasi?')) {
+                    console.log('Confirmed:', this.checked);
+                    alert('In real SPK, this would send AJAX request to: /produksi/transaksi-spk/set-otorisasi');
+                } else {
+                    // Revert checkbox
+                    $(this).prop('checked', !$(this).is(':checked'));
+                }
+            });
+        });
+    </script>
+    
+    <div style="margin: 20px; padding: 20px; background: #f0f0f0;">
+        <h3>Instructions:</h3>
+        <ol>
+            <li>Test all checkboxes above - they should all be clickable</li>
+            <li>Open Developer Tools (F12)</li>
+            <li>Check Console for JavaScript messages when clicking</li>
+            <li>If these work but SPK doesn't, compare the HTML/CSS differences</li>
+        </ol>
+        
+        <h4>Expected SPK Checkbox HTML:</h4>
+        <code>
+            &lt;div class="text-center"&gt;&lt;input type="checkbox" name="IsOtorisasi1" title="Otorisasi" style="accent-color:#28a745!important;cursor:pointer"&gt;&lt;/div&gt;
+        </code>
+        
+        <h4>Expected SPK JavaScript:</h4>
+        <code>
+            $(document).on("change", 'input[name="IsOtorisasi1"]', function (e) { ... });
+        </code>
+    </div>
+</body>
+</html>

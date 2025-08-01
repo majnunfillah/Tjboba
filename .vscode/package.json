@@ -1,0 +1,27 @@
+{
+    "name": "claude-copilot-mcp",
+    "version": "1.0.0",
+    "type": "module",
+    "description": "MCP servers untuk optimasi GitHub Copilot dengan Claude",
+    "main": "claude-context-server.js",
+    "scripts": {
+        "start": "node claude-context-server.js",
+        "dev": "nodemon claude-context-server.js",
+        "install-mcp": "npm install @modelcontextprotocol/sdk @modelcontextprotocol/server-stdio"
+    },
+    "dependencies": {
+        "@modelcontextprotocol/sdk": "^0.4.0",
+        "@modelcontextprotocol/server-stdio": "^0.4.0"
+    },
+    "devDependencies": {
+        "nodemon": "^3.0.2"
+    },
+    "keywords": [
+        "mcp",
+        "claude",
+        "github-copilot",
+        "laravel"
+    ],
+    "author": "BobaJetBrain Team",
+    "license": "MIT"
+}

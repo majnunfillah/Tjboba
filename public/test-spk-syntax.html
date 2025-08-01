@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SPK JS Syntax Test</title>
+    <script src="/assets/plugins/jquery/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Testing SPK JavaScript Syntax</h1>
+    <div id="test-output"></div>
+    
+    <script>
+        console.log('Testing SPK JS file...');
+        
+        // Try to load the SPK JS file and catch any syntax errors
+        const script = document.createElement('script');
+        script.type = 'module';
+        script.src = '/assets/js/produksi/spk/spk.js';
+        
+        script.onload = function() {
+            document.getElementById('test-output').innerHTML = 
+                '<p style="color: green;">✓ SPK JavaScript loaded successfully - no syntax errors!</p>';
+            console.log('SPK JS loaded successfully');
+        };
+        
+        script.onerror = function(error) {
+            document.getElementById('test-output').innerHTML = 
+                '<p style="color: red;">✗ SPK JavaScript failed to load - syntax error detected!</p>' +
+                '<pre>' + error.toString() + '</pre>';
+            console.error('SPK JS failed to load:', error);
+        };
+        
+        document.head.appendChild(script);
+        
+        // Also test if we can access the SPK page
+        setTimeout(() => {
+            fetch('/produksi/transaksi-spk/')
+            .then(response => {
+                if (response.ok) {
+                    document.getElementById('test-output').innerHTML += 
+                        '<p style="color: green;">✓ SPK page accessible</p>';
+                } else {
+                    document.getElementById('test-output').innerHTML += 
+                        '<p style="color: orange;">⚠ SPK page returned: ' + response.status + '</p>';
+                }
+            })
+            .catch(error => {
+                document.getElementById('test-output').innerHTML += 
+                    '<p style="color: red;">✗ SPK page error: ' + error.message + '</p>';
+            });
+        }, 1000);
+    </script>
+</body>
+</html>

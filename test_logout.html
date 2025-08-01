@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Logout Function</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <h1>Test Logout Function</h1>
+    
+    <button id="testLogout" onclick="Logout()">Test Logout with onclick</button>
+    <button id="testLogout2">Test Logout with jQuery</button>
+    
+    <!-- Hidden form for logout -->
+    <form id="formLogout" method="POST" action="/logout" style="display:none;">
+        <input type="hidden" name="_token" value="test">
+    </form>
+    
+    <div id="debug-info">
+        <h3>Debug Info:</h3>
+        <p>$globalVariable available: <span id="globalvar-status">Checking...</span></p>
+        <p>Logout function available: <span id="logout-status">Checking...</span></p>
+        <p>Form exists: <span id="form-status">Checking...</span></p>
+    </div>
+    
+    <script type="module">
+        // Import dari helper.js untuk memastikan global variable ada
+        import $globalVariable from './assets/js/base-function.js';
+        
+        // Export to window
+        window.$globalVariable = $globalVariable;
+        
+        // Create global Logout function
+        window.Logout = function() {
+            console.log('Global Logout called');
+            if (typeof $globalVariable !== 'undefined' && $globalVariable.Logout) {
+                console.log('Calling $globalVariable.Logout()');
+                $globalVariable.Logout();
+            } else {
+                console.error('$globalVariable.Logout not available');
+                alert('$globalVariable.Logout not available');
+            }
+        };
+        
+        // Mock swalConfirm for testing
+        if (typeof $globalVariable !== 'undefined') {
+            $globalVariable.swalConfirm = function(options) {
+                console.log('swalConfirm called with:', options);
+                if (confirm(options.text)) {
+                    options.callback();
+                }
+            };
+        }
+        
+        // Check status
+        $(document).ready(function() {
+            $('#globalvar-status').text(typeof $globalVariable !== 'undefined' ? 'YES' : 'NO');
+            $('#logout-status').text(typeof window.Logout === 'function' ? 'YES' : 'NO');
+            $('#form-status').text($('#formLogout').length > 0 ? 'YES' : 'NO');
+            
+            // Test with jQuery click
+            $('#testLogout2').click(function() {
+                console.log('jQuery click test');
+                if (typeof $globalVariable !== 'undefined') {
+                    $globalVariable.Logout();
+                } else {
+                    alert('$globalVariable not available');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

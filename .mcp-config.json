@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "bobajetbrain-context": {
+      "command": "node",
+      "args": ["mcp/mcp-server.js"],
+      "cwd": ".",
+      "env": {
+        "PROJECT_ROOT": ".",
+        "NODE_ENV": "development"
+      }
+    }
+  }
+}

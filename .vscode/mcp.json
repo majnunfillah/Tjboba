@@ -1,0 +1,47 @@
+{
+    "$schema": "https://raw.githubusercontent.com/modelcontextprotocol/specification/main/schema/mcp.schema.json",
+    "version": "1.0.0",
+    "servers": {
+        "claude-context": {
+            "command": "node",
+            "args": [
+                "c:/bobajetbrain/mcp-servers/claude-context-server.js"
+            ],
+            "env": {
+                "ANTHROPIC_API_KEY": "${env:ANTHROPIC_API_KEY}",
+                "PROJECT_ROOT": "c:/bobajetbrain"
+            }
+        },
+        "filesystem": {
+            "command": "node",
+            "args": [
+                "c:/bobajetbrain/mcp-servers/filesystem-server.js"
+            ],
+            "env": {
+                "ALLOWED_DIRECTORIES": "c:/bobajetbrain"
+            }
+        },
+        "git-context": {
+            "command": "node",
+            "args": [
+                "c:/bobajetbrain/mcp-servers/git-server.js"
+            ],
+            "env": {
+                "REPOSITORY_PATH": "c:/bobajetbrain"
+            }
+        },
+        "project-memory": {
+            "command": "node",
+            "args": [
+                "c:/bobajetbrain/mcp-servers/memory-server.js"
+            ],
+            "env": {
+                "MEMORY_STORE": "c:/bobajetbrain/.vscode/project-memory.json"
+            }
+        }
+    },
+    "client": {
+        "name": "GitHub Copilot Claude Integration",
+        "version": "1.0.0"
+    }
+}

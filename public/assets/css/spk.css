@@ -1,0 +1,896 @@
+/* SPK Expand Level 2 Styling */
+.dt-control-level2-expandable {
+    cursor: pointer !important;
+    background-color: #fff3cd !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    border: 2px solid #ffc107 !important;
+    width: 30px !important;
+    min-width: 30px !important;
+    max-width: 30px !important;
+    position: relative !important;
+    padding: 8px !important;
+    height: 35px !important;
+}
+
+.dt-control-level2-expandable:hover {
+    background-color: #fff8e1 !important;
+    border-color: #ff8f00 !important;
+}
+
+/* Plus sign for level 2 expand - VERY VISIBLE */
+.dt-control-level2-expandable:before {
+    content: '⊞' !important;
+    color: #ffc107 !important;
+    font-weight: 900 !important;
+    font-size: 18px !important;
+    line-height: 1 !important;
+    display: block !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 999 !important;
+}
+
+/* Minus sign for level 2 collapse */
+.shown-level2 .dt-control-level2-expandable:before {
+    content: '⊟' !important;
+    color: #dc3545 !important;
+}
+
+/* Main table level 2 expand button styling - HIJAU */
+table#datatableMain td.dt-control-level2-main {
+    background-color: #d4edda !important;
+    cursor: pointer !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    border: 2px solid #28a745 !important;
+    width: 30px !important;
+    min-width: 30px !important;
+    max-width: 30px !important;
+    position: relative !important;
+    padding: 8px !important;
+    height: 40px !important;
+}
+
+table#datatableMain td.dt-control-level2-main:hover {
+    background-color: #c3e6cb !important;
+    border-color: #1e7e34 !important;
+}
+
+/* Circle symbol for main table level 2 expand - HIJAU */
+table#datatableMain td.dt-control-level2-main:before {
+    content: '⊞' !important;
+    color: #28a745 !important;
+    font-weight: 900 !important;
+    font-size: 20px !important;
+    line-height: 1 !important;
+    display: block !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 999 !important;
+}
+
+/* Circle minus for main table level 2 collapse */
+table#datatableMain .shown-level2-main td.dt-control-level2-main:before {
+    content: '⊟' !important;
+    color: #dc3545 !important;
+}
+
+/* Standard DataTables expand/collapse button - FORCED VISIBILITY */
+table#datatableMain td.dt-control {
+    background-color: #f8f9fa !important;
+    cursor: pointer !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+    border: 2px solid #007bff !important;
+    width: 30px !important;
+    min-width: 30px !important;
+    max-width: 30px !important;
+    position: relative !important;
+    padding: 8px !important;
+    height: 40px !important;
+}
+
+table#datatableMain td.dt-control:hover {
+    background-color: #e8f4f8 !important;
+    border-color: #0056b3 !important;
+}
+
+/* Plus sign for expand - VERY VISIBLE */
+table#datatableMain td.dt-control:before {
+    content: '⊞' !important;
+    color: #007bff !important;
+    font-weight: 900 !important;
+    font-size: 20px !important;
+    line-height: 1 !important;
+    display: block !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 999 !important;
+}
+
+table#datatableMain tr.shown td.dt-control:before {
+    content: '⊟' !important;
+    color: #dc3545 !important;
+}
+
+/* Make sure nothing is hiding the button */
+table#datatableMain td.dt-control * {
+    display: none !important;
+}
+
+table#datatableMain td.dt-control:before {
+    display: block !important;
+}
+
+.indicator-white {
+    background-color: #f8f9fa;
+}
+
+/* Level 1 detail table styling */
+.level1-expand {
+    margin: 15px 0;
+    padding: 15px;
+    background-color: #e3f2fd;
+    border-left: 4px solid #007bff;
+    border-radius: 4px;
+}
+
+.level1-expand h5 {
+    color: #0056b3;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.level1-table {
+    margin-bottom: 0;
+    font-size: 0.9em;
+}
+
+.level1-table thead th {
+    background-color: #007bff;
+    color: white;
+    font-weight: 600;
+    text-align: center;
+    font-size: 0.85em;
+    padding: 10px 8px;
+}
+
+.level1-table tbody td {
+    padding: 8px;
+    vertical-align: middle;
+}
+
+/* Combined expand styling for vertical layout */
+.combined-expand {
+    margin: 15px 0;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+}
+
+.combined-expand .level1-section {
+    background-color: #e3f2fd;
+    border-left: 4px solid #007bff;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.combined-expand .level2-section {
+    background-color: #e8f5e8;
+    border-left: 4px solid #28a745;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.combined-expand .level1-section:last-child,
+.combined-expand .level2-section:last-child {
+    margin-bottom: 0;
+}
+
+.combined-expand .level1-section h5 {
+    color: #0056b3;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.combined-expand .level2-section h5 {
+    color: #1e7e34;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.combined-expand .level1-table,
+.combined-expand .level2-table {
+    margin-bottom: 0;
+    font-size: 0.9em;
+}
+
+.combined-expand .level1-table thead th {
+    background-color: #007bff;
+    color: white;
+    font-weight: 600;
+    text-align: center;
+    font-size: 0.85em;
+    padding: 10px 8px;
+}
+
+.combined-expand .level2-table thead th {
+    background-color: #28a745;
+    color: white;
+    font-weight: 600;
+    text-align: center;
+    font-size: 0.85em;
+    padding: 10px 8px;
+}
+
+.combined-expand .level1-table tbody td,
+.combined-expand .level2-table tbody td {
+    padding: 8px;
+    vertical-align: middle;
+}
+
+/* Memorial-style expand table styling */
+.table_expand {
+    background-color: #ffffff;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.table_expand table {
+    margin-bottom: 0;
+}
+
+.table_expand table thead th {
+    border-top: none;
+    font-weight: 600;
+    text-align: center;
+    padding: 12px 8px;
+}
+
+.table_expand table tfoot th {
+    background-color: #f8f9fa;
+    border-top: 2px solid #dee2e6;
+    font-weight: 600;
+    padding: 12px 8px;
+}
+
+.table_expand table tbody td {
+    padding: 10px 8px;
+    vertical-align: middle;
+}
+
+/* Action buttons in expand sections */
+.btn-add-level1,
+.btn-add-level2,
+.btn-close-level1,
+.btn-close-level2 {
+    font-size: 0.875rem;
+    padding: 0.375rem 0.75rem;
+}
+
+.btn-edit-level1,
+.btn-edit-level2,
+.btn-delete-level1,
+.btn-delete-level2 {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+}
+
+/* Section header styling */
+.level1-section .d-flex,
+.level2-section .d-flex {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+/* Level 2 main expand styling */
+.level2-main-expand {
+    margin: 15px 0;
+    padding: 15px;
+    background-color: #e8f5e8;
+    border-left: 4px solid #28a745;
+    border-radius: 4px;
+}
+
+.level2-main-expand h5 {
+    color: #1e7e34;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+/* Level 2 Detail Container - POSITIONED BELOW TABLE */
+.level2-main-container {
+    background: #f8f9fa;
+    border: 2px solid #28a745;
+    border-radius: 8px;
+    margin: 15px 0;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(40, 167, 69, 0.2);
+    animation: slideDown 0.3s ease-out;
+}
+
+.level2-main-container .level2-main-expand {
+    background: white;
+    border-radius: 6px;
+    padding: 15px;
+    margin: 0;
+    border-left: none;
+    border: 1px solid #dee2e6;
+}
+
+.level2-main-container .level2-main-expand h5 {
+    color: #28a745;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #28a745;
+    padding-bottom: 8px;
+}
+
+.level2-table {
+    margin-bottom: 0;
+    font-size: 0.9em;
+}
+
+.level2-table thead th {
+    background-color: #28a745;
+    color: white;
+    font-weight: 600;
+    text-align: center;
+    font-size: 0.85em;
+    padding: 10px 8px;
+}
+
+.level2-table tbody td {
+    padding: 8px;
+    vertical-align: middle;
+}
+
+/* Main table styling */
+.table thead th {
+    background-color: #495057;
+    color: white;
+    font-weight: 600;
+    border-color: #495057;
+    text-align: center;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    .level2-expand table {
+        font-size: 0.75em;
+    }
+    
+    .level2-expand .thead-light th {
+        font-size: 0.7em;
+        padding: 6px 4px;
+    }
+}
+.badge.badge-info {
+    background-color: #17a2b8 !important;
+}
+
+.badge.badge-primary {
+    background-color: #007bff !important;
+}
+
+/* Hover effect untuk membedakan level */
+.level-1-row:hover {
+    background-color: #e3f2fd !important;
+}
+
+.level-2-row:hover {
+    background-color: #e1f4fd !important;
+}
+
+/* Additional styling for SPK DataTable */
+.spk-expand-table {
+    margin-top: 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+}
+
+/* Level 2 Container Styling */
+.level-2-container {
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        max-height: 0;
+    }
+    to {
+        opacity: 1;
+        max-height: 500px;
+    }
+}
+
+/* Expand button styling */
+.details-control-level2 {
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.details-control-level2:hover {
+    background-color: #f8f9fa !important;
+}
+
+/* Level 2 table styling */
+.level-2-table {
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+}
+
+.level-2-table thead th {
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
+    padding: 8px 4px;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.level-2-table tbody td {
+    font-size: 11px;
+    padding: 6px 4px;
+    vertical-align: middle;
+}
+
+.level-2-table tbody tr:hover {
+    background-color: #e8f5e8 !important;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    .level-2-container {
+        padding: 10px 5px;
+        margin: 5px 0;
+    }
+    
+    .level-2-table {
+        font-size: 10px;
+    }
+}
+
+/* Shown level 2 row styling */
+tr.shown-level2 {
+    background-color: #e3f2fd !important;
+}
+
+tr.shown-level2 .details-control-level2 {
+    background-color: #bbdefb !important;
+}
+
+.spk-expand-table .table {
+    margin-bottom: 0;
+}
+
+/* Level indicator styling */
+.level-indicator {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+}
+
+/* Level 2 Header Styling */
+.level-2-header {
+    background-color: #e3f2fd !important;
+    color: #1976d2 !important;
+    font-size: 11px;
+    font-style: italic;
+    border-left: 2px solid #2196f3 !important;
+}
+
+/* Hide level 2 columns by default until level 2 data is present */
+.table_expand table.dataTable thead th.level-2-header {
+    position: relative;
+}
+
+.table_expand table.dataTable thead th.level-2-header::after {
+    content: " (L2)";
+    font-size: 9px;
+    color: #666;
+    font-weight: normal;
+}
+
+/* Make level 2 columns more visible when there's level 2 data */
+.table_expand table.dataTable tbody tr.level-2-row td {
+    border-top: 1px solid #2196f3 !important;
+}
+
+/* Responsive styling for level 2 columns */
+@media (max-width: 768px) {
+    .level-2-row td {
+        padding-left: 15px !important;
+    }
+    
+    .level-2-row td:first-child::before {
+        left: 5px;
+        font-size: 0.8rem;
+    }
+
+    .level-2-header {
+        font-size: 10px;
+    }
+}
+
+/* Level 2 Column Styling */
+.level-2-col {
+    border-left: 1px dashed #dee2e6 !important;
+    background-color: #f8f9fa;
+    opacity: 0.7;
+}
+
+/* When level 2 row, make columns fully visible */
+.level-2-row .level-2-col {
+    background-color: #e8f5e8 !important;
+    border-left: 3px solid #4caf50 !important;
+    font-weight: 500;
+    opacity: 1;
+}
+
+/* When level 1 row, make level 2 columns very subtle */
+.level-1-row .level-2-col {
+    background-color: #f8f9fa !important;
+    color: transparent !important;
+    border-left: 1px dotted #e0e0e0 !important;
+    opacity: 0.2;
+}
+
+/* Hide level 2 content in level 1 rows completely */
+.level-1-row .level-2-col::after {
+    content: "L2";
+    color: #ccc;
+    font-size: 9px;
+    font-style: italic;
+    opacity: 0.5;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Remove the L2 indicator from level 2 rows */
+.level-2-row .level-2-col::after {
+    display: none;
+}
+
+/* ===== SPK TABSHEET STYLING ===== */
+
+/* Tab navigation styling */
+.card-outline-tabs .nav-tabs {
+    border-bottom: 2px solid #007bff;
+    margin-bottom: 0;
+}
+
+.card-outline-tabs .nav-tabs .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    color: #6c757d;
+    font-weight: 500;
+    padding: 12px 20px;
+    transition: all 0.3s ease;
+}
+
+.card-outline-tabs .nav-tabs .nav-link:hover {
+    border-color: #e9ecef #e9ecef #dee2e6;
+    isolation: isolate;
+    background-color: #f8f9fa;
+    color: #007bff;
+}
+
+.card-outline-tabs .nav-tabs .nav-link.active,
+.card-outline-tabs .nav-tabs .nav-item.show .nav-link {
+    color: #007bff;
+    background-color: #fff;
+    border-color: #dee2e6 #dee2e6 #fff;
+    border-bottom: 2px solid #007bff;
+    font-weight: 600;
+}
+
+/* Tab content styling */
+.tab-content {
+    padding-top: 15px;
+}
+
+.tab-pane {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Statistics boxes styling */
+.small-box {
+    border-radius: 0.5rem;
+    color: #fff;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 1px rgba(0,0,0,.125), 0 1px 3px rgba(0,0,0,.2);
+    margin-bottom: 20px;
+}
+
+.small-box .inner h3 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    white-space: nowrap;
+    padding: 0;
+}
+
+.small-box .inner p {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.small-box .icon {
+    position: absolute;
+    top: auto;
+    bottom: 5px;
+    right: 15px;
+    z-index: 0;
+    font-size: 70px;
+    color: rgba(0,0,0,.15);
+}
+
+.small-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,.2);
+    transition: all 0.3s ease;
+}
+
+/* Tab specific styling */
+#daftar-spk .card-title {
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+#laporan-spk .card-title {
+    border-bottom: 2px solid #28a745;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+#laporan-spk .alert-info {
+    border-left: 4px solid #17a2b8;
+}
+
+/* Responsive tab styling */
+@media (max-width: 768px) {
+    .nav-tabs .nav-link {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+    
+    .small-box .inner h3 {
+        font-size: 1.8rem;
+    }
+    
+    .small-box .icon {
+        font-size: 50px;
+    }
+}
+
+/* ===== OUTSTANDING SO MEMORIAL STYLE ===== */
+
+/* Outstanding SO Tab specific styling */
+#outstanding-so .card-title {
+    border-bottom: 2px solid #dc3545;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* Memorial Container for Outstanding SO */
+.memorial-container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #dee2e6;
+}
+
+/* Outstanding SO Table Styling */
+#outstandingSoTable {
+    font-size: 0.9rem;
+}
+
+#outstandingSoTable thead.thead-dark th {
+    background-color: #343a40 !important;
+    color: #ffffff !important;
+    border-color: #454d55 !important;
+    font-weight: 600;
+    text-align: center;
+    font-size: 0.85rem;
+    padding: 12px 8px;
+}
+
+#outstandingSoTable tbody td {
+    padding: 10px 8px;
+    vertical-align: middle;
+    border-color: #dee2e6;
+}
+
+#outstandingSoTable tfoot.thead-light th {
+    background-color: #f8f9fa !important;
+    color: #495057 !important;
+    border-top: 2px solid #dee2e6;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+/* Row hover effects */
+#outstandingSoTable tbody tr:hover {
+    background-color: #f8f9fa !important;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+}
+
+/* Color coding for saldo */
+#outstandingSoTable .text-danger {
+    color: #dc3545 !important;
+    font-weight: bold;
+}
+
+#outstandingSoTable .text-success {
+    color: #28a745 !important;
+    font-weight: bold;
+}
+
+#outstandingSoTable .text-warning {
+    color: #ffc107 !important;
+    font-weight: bold;
+}
+
+/* Summary cards specific styling for Outstanding SO */
+#outstanding-so .small-box.bg-primary {
+    background: linear-gradient(45deg, #007bff, #0056b3) !important;
+}
+
+#outstanding-so .small-box.bg-warning {
+    background: linear-gradient(45deg, #ffc107, #e0a800) !important;
+}
+
+#outstanding-so .small-box.bg-danger {
+    background: linear-gradient(45deg, #dc3545, #bd2130) !important;
+}
+
+#outstanding-so .small-box.bg-success {
+    background: linear-gradient(45deg, #28a745, #1e7e34) !important;
+}
+
+/* Outstanding SO responsive table */
+@media (max-width: 1200px) {
+    #outstandingSoTable {
+        font-size: 0.8rem;
+    }
+    
+    #outstandingSoTable thead th,
+    #outstandingSoTable tfoot th {
+        font-size: 0.75rem;
+        padding: 8px 6px;
+    }
+    
+    #outstandingSoTable tbody td {
+        padding: 8px 6px;
+    }
+}
+
+@media (max-width: 768px) {
+    .memorial-container {
+        padding: 15px;
+        margin: 0 -15px;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+    
+    #outstandingSoTable {
+        font-size: 0.75rem;
+    }
+    
+    #outstandingSoTable thead th,
+    #outstandingSoTable tfoot th {
+        font-size: 0.7rem;
+        padding: 6px 4px;
+    }
+    
+    #outstandingSoTable tbody td {
+        padding: 6px 4px;
+    }
+    
+    /* Stack summary cards on mobile */
+    #outstanding-so .col-md-3 {
+        margin-bottom: 15px;
+    }
+    
+    #outstanding-so .small-box .inner h3 {
+        font-size: 1.8rem;
+    }
+    
+    #outstanding-so .small-box .icon {
+        font-size: 50px;
+    }
+}
+
+/* Memorial table loading animation */
+#outstandingSoTable tbody td .fa-spinner {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Outstanding SO specific button styling */
+#outstanding-so .btn {
+    border-radius: 0.375rem;
+    font-weight: 500;
+}
+
+#outstanding-so .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: all 0.2s ease;
+}
+
+/* Tab icon styling for Outstanding SO */
+#outstanding-so-tab .fas.fa-exclamation-triangle {
+    color: #dc3545;
+}
+
+/* DataTables wrapper styling for Outstanding SO */
+#outstandingSoTable_wrapper .dataTables_length,
+#outstandingSoTable_wrapper .dataTables_filter,
+#outstandingSoTable_wrapper .dataTables_info,
+#outstandingSoTable_wrapper .dataTables_paginate {
+    margin: 10px 0;
+}
+
+#outstandingSoTable_wrapper .dataTables_length select,
+#outstandingSoTable_wrapper .dataTables_filter input {
+    border-radius: 0.375rem;
+    border: 1px solid #ced4da;
+    padding: 0.375rem 0.75rem;
+}
+
+#outstandingSoTable_wrapper .dataTables_filter input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Outstanding SO export buttons styling */
+#outstandingSoTable_wrapper .dt-buttons {
+    margin-bottom: 15px;
+}
+
+#outstandingSoTable_wrapper .dt-buttons .btn {
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    padding: 0.375rem 0.75rem;
+}

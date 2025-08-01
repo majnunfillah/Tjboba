@@ -1,0 +1,39 @@
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+.env
+.htaccess
+php.ini
+.user.ini
+.env.backup
+.phpunit.result.cache
+docker-compose.override.yml
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+/.idea
+
+# AI Configuration - INCLUDE these files for GitHub
+# .vscode/settings.json
+# .cursorrules
+# .copilotrc.json
+# .copilot-rules.md
+# .copilot-instructions
+# COPILOT_CONFIG_README.md
+
+# Temporary files
+*.tmp
+*.log
+error_log
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

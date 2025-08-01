@@ -1,0 +1,110 @@
+{
+  "name": "BobaJetBrain Laravel Project",
+  "description": "Aplikasi Laravel untuk sistem SPK (Surat Perintah Kerja) dan manajemen inventory",
+  "version": "1.0.0",
+  "author": "PMK Developer Team",
+  
+  "rules": [
+    {
+      "name": "Laravel Conventions",
+      "description": "Ikuti konvensi Laravel dan PSR-12",
+      "patterns": [
+        "Gunakan Eloquent ORM untuk database operations",
+        "Gunakan Repository pattern untuk data access",
+        "Gunakan Service classes untuk business logic",
+        "Gunakan Form Requests untuk validation",
+        "Gunakan Resource classes untuk API responses"
+      ]
+    },
+    {
+      "name": "PHP Best Practices",
+      "description": "Praktik terbaik PHP",
+      "patterns": [
+        "Selalu tambahkan type hints untuk parameters",
+        "Selalu tambahkan return types",
+        "Gunakan strict types di awal file PHP",
+        "Gunakan nullable types (?string) jika diperlukan",
+        "Gunakan array<type> untuk array type hints"
+      ]
+    },
+    {
+      "name": "Database Patterns",
+      "description": "Pola database untuk aplikasi ini",
+      "patterns": [
+        "Gunakan Eloquent relationships untuk relasi",
+        "Gunakan DB::raw() untuk SQL kompleks",
+        "Gunakan COALESCE() daripada ISNULL() untuk compatibility",
+        "Gunakan pagination untuk listing data",
+        "Gunakan DataTables format untuk Ajax responses"
+      ]
+    },
+    {
+      "name": "Error Handling",
+      "description": "Penanganan error yang konsisten",
+      "patterns": [
+        "Gunakan try-catch untuk database operations",
+        "Return JSON response dengan status code yang tepat",
+        "Log error untuk debugging",
+        "Berikan pesan error yang user-friendly"
+      ]
+    }
+  ],
+  
+  "context": {
+    "projectType": "Laravel Web Application",
+    "phpVersion": "8.1+",
+    "laravelVersion": "9.x",
+    "database": "SQL Server",
+    "frontend": "Bootstrap + DataTables + jQuery",
+    "architecture": "MVC + Repository Pattern"
+  },
+  
+  "codeStyle": {
+    "indentation": "4 spaces",
+    "lineEnding": "CRLF",
+    "maxLineLength": 120,
+    "namingConventions": {
+      "classes": "PascalCase",
+      "methods": "camelCase",
+      "variables": "camelCase",
+      "constants": "UPPER_SNAKE_CASE",
+      "database_tables": "snake_case",
+      "database_columns": "snake_case"
+    }
+  },
+  
+  "modules": {
+    "SPK": {
+      "description": "Surat Perintah Kerja - Work Order Management",
+      "models": ["SPK", "SPKDetail"],
+      "controllers": ["SPKController"],
+      "repositories": ["SPKRepository"],
+      "views": ["spk/index.blade.php", "spk/create.blade.php", "spk/edit.blade.php"]
+    },
+    "Inventory": {
+      "description": "Manajemen stok dan barang",
+      "models": ["Stock", "Item"],
+      "tables": ["tbstok", "tbbrg"]
+    },
+    "SalesOrder": {
+      "description": "Manajemen Sales Order",
+      "models": ["SalesOrder"],
+      "tables": ["tbso", "tbsod"]
+    }
+  },
+  
+  "commonPatterns": {
+    "controller_method": {
+      "description": "Standard controller method structure",
+      "template": "public function methodName(Request $request): JsonResponse\n{\n    try {\n        // Implementation\n        return response()->json(['success' => true, 'data' => $data]);\n    } catch (Exception $e) {\n        Log::error($e->getMessage());\n        return response()->json(['success' => false, 'message' => 'Error occurred'], 500);\n    }\n}"
+    },
+    "repository_method": {
+      "description": "Standard repository method structure",
+      "template": "public function methodName(array $params = []): array\n{\n    $query = DB::table('table_name')\n        ->select('columns')\n        ->where('conditions');\n    \n    return $query->get()->toArray();\n}"
+    },
+    "datatable_response": {
+      "description": "DataTables Ajax response format",
+      "template": "return [\n    'draw' => $request->get('draw'),\n    'recordsTotal' => $totalRecords,\n    'recordsFiltered' => $filteredRecords,\n    'data' => $data\n];"
+    }
+  }
+}
