@@ -3,6 +3,7 @@
 /public/storage
 /storage/*.key
 /vendor
+/mcp-server/node_modules
 .env
 .htaccess
 php.ini

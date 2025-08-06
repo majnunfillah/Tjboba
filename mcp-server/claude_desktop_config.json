@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "tjboba": {
+      "command": "node",
+      "args": ["D:\\Tjboba\\mcp-server\\server.js"],
+      "env": {
+        "TJBOBA_PROJECT_PATH": "D:\\Tjboba",
+        "DB_HOST": "192.168.56.1",
+        "DB_DATABASE": "dbwbcp",
+        "DB_USERNAME": "sa",
+        "DB_PASSWORD": "anekajc1a9"
+      }
+    }
+  }
+}
